@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CarteraCrypto_Api.props" />
+</Project>
