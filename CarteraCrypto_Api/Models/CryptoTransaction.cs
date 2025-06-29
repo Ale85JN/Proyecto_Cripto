@@ -11,17 +11,17 @@ namespace CarteraCrypto_Api.Models
         public int id { get; set; }
 
         [Required]
-        public string crypto_Code { get; set; }
+        public string cryptoCode { get; set; }
 
         [Required]
         public string action { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,8)")]
-        public decimal crypto_Amount { get; set; }
+        public decimal cryptoAmount { get; set; }
 
         [Required]
-        public int client_Id { get; set; }
+        public int clientId { get; set; }
 
         [Required]
         [Range(0.01, double.MaxValue)]

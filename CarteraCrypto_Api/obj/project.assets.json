@@ -8165,11 +8165,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CarteraCrypto_Api\\CarteraCrypto_Api.csproj",
+      "projectUniqueName": "C:\\ProyectoCripto\\CarteraCrypto_Api\\CarteraCrypto_Api.csproj",
       "projectName": "CarteraCrypto_Api",
-      "projectPath": "C:\\CarteraCrypto_Api\\CarteraCrypto_Api.csproj",
+      "projectPath": "C:\\ProyectoCripto\\CarteraCrypto_Api\\CarteraCrypto_Api.csproj",
       "packagesPath": "C:\\Users\\Ale Bobadilla\\.nuget\\packages\\",
-      "outputPath": "C:\\CarteraCrypto_Api\\obj\\",
+      "outputPath": "C:\\ProyectoCripto\\CarteraCrypto_Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

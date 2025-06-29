@@ -4,7 +4,10 @@ using Humanizer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Globalization;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Transactions;
 
@@ -30,12 +33,12 @@ namespace CarteraCrypto_Api.Controllers
             var transactionDto = transactions.Select(t => new TransactionDto
             { 
                id=t.id,
-               crypto_Code = t.crypto_Code,
+               cryptoCode = t.cryptoCode,
                action = t.action,
-               crypto_Amount = t.crypto_Amount,
+               cryptoAmount = t.cryptoAmount,
                money = t.money,
                datetime = t.datetime.ToString(),
-               clientId = t.client_Id,
+               clientId = t.clientId,
                clientName = t.Client?.name
 
             }).ToList();
@@ -54,19 +57,46 @@ namespace CarteraCrypto_Api.Controllers
                 return BadRequest("Formato de fecha invalido");
             }
 
-            if (transactionDto.crypto_Amount <= 0)
+            if (transactionDto.cryptoAmount <= 0)
             {
                 return BadRequest("La cantidad de Criptomonedas debe ser mayor a 0");
             }
 
+
+
+            string url = $"https://criptoya.com/api/argenbtc/{transactionDto.cryptoCode.ToLower()}/ars";
+            using (var httpClient = new HttpClient())
+            { 
+                httpClient.DefaultRequestHeaders.Accept.Add
+                ( new MediaTypeWithQualityHeaderValue("application/json"));
+                try
+                {
+                    var response = await httpClient.GetAsync(url);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        CriptoYaResponse result = JsonConvert.DeserializeObject<CriptoYaResponse>(responseContent);
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    return StatusCode(500, $"Error al procesar la solicitud: {ex.Message}");
+                }
+            }
+           
             var transaction = new CryptoTransaction
             {
-                crypto_Code = transactionDto.crypto_Code,
-                action = transactionDto.action,
-                crypto_Amount = transactionDto.crypto_Amount,
-                money = transactionDto.money,
-                client_Id = transactionDto.clientId,
-                datetime = parcedDate
+                    cryptoCode = transactionDto.cryptoCode,
+                    action = transactionDto.action,
+                    cryptoAmount = transactionDto.cryptoAmount,
+                    money = transactionDto.money,
+                    clientId = transactionDto.clientId,
+                    datetime = parcedDate
             };
             _context.Transactions.Add(transaction);
             await _context.SaveChangesAsync();
