@@ -560,3 +560,4 @@ C:\ProyectoCripto\CarteraCrypto_Api\obj\Debug\net8.0\staticwebassets.pack.json
 C:\ProyectoCripto\CarteraCrypto_Api\obj\Debug\net8.0\CarteraC.6C559C1A.Up2Date
 C:\ProyectoCripto\CarteraCrypto_Api\obj\Debug\net8.0\CarteraCrypto_Api.genruntimeconfig.cache
 C:\ProyectoCripto\CarteraCrypto_Api\obj\Debug\net8.0\ref\CarteraCrypto_Api.dll
+C:\ProyectoCripto\CarteraCrypto_Api\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

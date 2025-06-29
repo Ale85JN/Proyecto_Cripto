@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CarteraCrypto_Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40eb3ced3fdcc51a54c46f56c09e68c399effdd9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9438d47f56f6d6b1a433b2cb05c35a408b8b3083")]
 [assembly: System.Reflection.AssemblyProductAttribute("CarteraCrypto_Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CarteraCrypto_Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -29,19 +29,6 @@
           "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CryptoTransaction.cs",
-              "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CryptoTransaction.cs",
-              "RelativeDocumentMoniker": "Models\\CryptoTransaction.cs",
-              "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CryptoTransaction.cs",
-              "RelativeToolTip": "Models\\CryptoTransaction.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-29T02:51:06.792Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
@@ -55,6 +42,18 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CryptoTransaction.cs",
+              "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CryptoTransaction.cs",
+              "RelativeDocumentMoniker": "Models\\CryptoTransaction.cs",
+              "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CryptoTransaction.cs",
+              "RelativeToolTip": "Models\\CryptoTransaction.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABcAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T02:51:06.792Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "CriptoYaResponse.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CriptoYaResponse.cs",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "Models\\CriptoYaResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T22:35:26.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-28T22:35:26.984Z"
             },
             {
               "$type": "Document",
@@ -76,8 +74,7 @@
               "RelativeToolTip": "DTOs\\TransactionDto.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAA9wAgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T20:02:26.754Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-28T20:02:26.754Z"
             },
             {
               "$type": "Document",
@@ -85,9 +82,9 @@
               "Title": "CryptoTransactionController.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Controllers\\CryptoTransactionController.cs",
               "RelativeDocumentMoniker": "Controllers\\CryptoTransactionController.cs",
-              "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Controllers\\CryptoTransactionController.cs*",
-              "RelativeToolTip": "Controllers\\CryptoTransactionController.cs*",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAwwF4AAAAzAAAAAAAAAA==",
+              "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Controllers\\CryptoTransactionController.cs",
+              "RelativeToolTip": "Controllers\\CryptoTransactionController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAowFIAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T22:08:38.478Z",
               "EditorCaption": ""
