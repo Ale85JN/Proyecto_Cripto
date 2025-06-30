@@ -23,7 +23,7 @@ namespace CarteraCrypto_Api.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TransactionDto>>> Get() 
+        public async Task<ActionResult<IEnumerable<TransactionResponseDto>>> Get()
         {
             var transactions = await _context.Transactions
                     .Include(t => t.Client)
@@ -31,19 +31,184 @@ namespace CarteraCrypto_Api.Controllers
                     .ToListAsync();
 
             var transactionDto = transactions.Select(t => new TransactionResponseDto
-            { 
-               id=t.id,
-               cryptoCode = t.cryptoCode,
-               action = t.action,
-               cryptoAmount = t.cryptoAmount,
-               money = t.money,
-               datetime = t.datetime,
-               clientId = t.clientId,
-               clientName = t.Client?.name
+            {
+                id = t.id,
+                cryptoCode = t.cryptoCode,
+                action = t.action,
+                cryptoAmount = t.cryptoAmount,
+                money = t.money,
+                datetime = t.datetime,
+                clientId = t.clientId,
+                clientName = t.Client?.name
 
             }).ToList();
             return Ok(transactionDto);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<TransactionResponseDto>> Get(int id)
+        {
+            var transaction = await _context.Transactions
+                .Include(t => t.Client)
+                .FirstOrDefaultAsync(t => t.id == id);
+
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+            var responseDto = new TransactionResponseDto
+            {
+                id = transaction.id,
+                cryptoCode = transaction.cryptoCode,
+                action = transaction.action,
+                cryptoAmount = transaction.cryptoAmount,
+                money = transaction.money,
+                datetime = transaction.datetime,
+                clientId = transaction.clientId,
+                clientName = transaction.Client?.name
+            };
+            return Ok(responseDto);
+        }
+
+        [HttpGet("client/{clientId}")]
+        public async Task<ActionResult<IEnumerable<TransactionResponseDto>>> GetByClientId(int clientId)
+        {
+            var clientExists = await _context.Clients.AnyAsync(c => c.id == clientId);
+            if (!clientExists)
+            {
+                return NotFound($"No se encontro el cliente con el Id {clientId}");
+            }
+
+            var transactions = await _context.Transactions
+                .Include(t => t.Client).Where(t => t.clientId == clientId)
+                .OrderByDescending(t => t.datetime).ToListAsync();
+
+            var responseList = transactions.Select(t => new TransactionResponseDto
+            {
+                id = t.id,
+                cryptoCode = t.cryptoCode,
+                action = t.action,
+                cryptoAmount = t.cryptoAmount,
+                money = t.money,
+                datetime = t.datetime,
+                clientId = t.clientId,
+                clientName = t.Client?.name
+            }).ToList();
+            return Ok(responseList);
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTransaction(int id)
+        {
+            var transaction = await _context.Transactions.FindAsync(id);
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+            _context.Transactions.Remove(transaction);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchTransaction(int id, TransactionUpdateDto updateDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
+            var transaction = await _context.Transactions
+                .Include(t => t.Client)
+                .FirstOrDefaultAsync(t => t.id == id);
+
+            if (transaction == null)
+            {
+                return NotFound();
+            }
+
+            if (updateDto.cryptoCode != null)
+            {
+                transaction.cryptoCode = updateDto.cryptoCode.ToLower();
+            }
+            if (updateDto.action != null)
+            { 
+                transaction.action = updateDto.action.ToLower();
+            }
+            if (updateDto.cryptoAmount.HasValue)
+            {
+                if (updateDto.cryptoAmount != 0)
+                {
+                   return BadRequest("La cantidada de criptomonedas debe ser mayor a 0 ");
+                }
+                transaction.cryptoAmount = updateDto.cryptoAmount.Value;
+            }
+            if (updateDto.money.HasValue)
+            {
+                if (updateDto.money <= 0)
+                {
+                    return BadRequest("El monto debe ser mayor a 0");
+                }
+                transaction.money = updateDto.money.Value;
+            }
+
+            if (updateDto.datetime != null)
+            {
+                if (!DateTime.TryParseExact(updateDto.datetime, "yyyy-MM-dd HH:mm",
+                    CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
+                {
+                    return BadRequest("Formato de fecha invalido");
+                }
+                transaction.datetime = parsedDate;
+            }
+
+            if (updateDto.clientId.HasValue)
+            {
+                var clientExists = await _context.Clients.AnyAsync(c => c.id == updateDto.clientId.Value);
+                if (!clientExists)
+                {
+                    return NotFound($"No se encontró el cliente con ID {updateDto.clientId.Value}");
+                }
+                transaction.clientId = updateDto.clientId.Value;
+            }
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!TransactionExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+          
+            var responseDto = new TransactionResponseDto
+            {
+                id = transaction.id,
+                cryptoCode = transaction.cryptoCode,
+                action = transaction.action,
+                cryptoAmount = transaction.cryptoAmount,
+                money = transaction.money,
+                datetime = transaction.datetime,
+                clientId = transaction.clientId,
+                clientName = transaction.Client?.name
+            };
+
+            return Ok(responseDto);
+        }
+
+        private bool TransactionExists(int id)
+        {
+            return _context.Transactions.Any(e => e.id == id);
+        }
+        
+
+
         [HttpPost]
         public async Task<ActionResult<TransactionResponseDto>> Post(TransactionCreateDto transactionDto)
         {
@@ -120,5 +285,7 @@ namespace CarteraCrypto_Api.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = transaction.id}, responseDto);
         }
+       
+       
     }
 }

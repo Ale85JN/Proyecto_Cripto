@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "C:\\ProyectoCripto\\CarteraCrypto_Api\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\models\\cryptotransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:models\\cryptotransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\models\\criptoyaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:models\\criptoyaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\dtos\\transactioncreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:dtos\\transactioncreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\dtos\\transactionresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:dtos\\transactionresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\dtos\\transactioncreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:dtos\\transactioncreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\models\\cryptotransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:models\\cryptotransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\models\\criptoyaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:models\\criptoyaresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,28 +46,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TransactionResponseDto.cs",
-              "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\DTOs\\TransactionResponseDto.cs",
-              "RelativeDocumentMoniker": "DTOs\\TransactionResponseDto.cs",
-              "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\DTOs\\TransactionResponseDto.cs",
-              "RelativeToolTip": "DTOs\\TransactionResponseDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-29T04:24:23.689Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "CryptoTransactionController.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Controllers\\CryptoTransactionController.cs",
               "RelativeDocumentMoniker": "Controllers\\CryptoTransactionController.cs",
               "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Controllers\\CryptoTransactionController.cs",
               "RelativeToolTip": "Controllers\\CryptoTransactionController.cs",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAswCcAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAiwNAAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-25T22:08:38.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TransactionResponseDto.cs",
+              "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\DTOs\\TransactionResponseDto.cs",
+              "RelativeDocumentMoniker": "DTOs\\TransactionResponseDto.cs",
+              "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\DTOs\\TransactionResponseDto.cs",
+              "RelativeToolTip": "DTOs\\TransactionResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T04:24:23.689Z",
               "EditorCaption": ""
             },
             {
@@ -78,27 +78,27 @@
               "RelativeDocumentMoniker": "DTOs\\TransactionCreateDto.cs",
               "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\DTOs\\TransactionCreateDto.cs",
               "RelativeToolTip": "DTOs\\TransactionCreateDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-29T04:23:42.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "CryptoTransaction.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CryptoTransaction.cs",
               "RelativeDocumentMoniker": "Models\\CryptoTransaction.cs",
               "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CryptoTransaction.cs",
               "RelativeToolTip": "Models\\CryptoTransaction.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAowBAAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-29T02:51:06.792Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "CriptoYaResponse.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\CriptoYaResponse.cs",
               "RelativeDocumentMoniker": "Models\\CriptoYaResponse.cs",
@@ -106,8 +106,7 @@
               "RelativeToolTip": "Models\\CriptoYaResponse.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-28T22:35:26.984Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-28T22:35:26.984Z"
             }
           ]
         }
