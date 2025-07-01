@@ -173,23 +173,8 @@ namespace CarteraCrypto_Api.Controllers
                 transaction.clientId = updateDto.clientId.Value;
             }
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!TransactionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
-          
+            await _context.SaveChangesAsync();
             var responseDto = new TransactionResponseDto
             {
                 id = transaction.id,
@@ -204,12 +189,6 @@ namespace CarteraCrypto_Api.Controllers
 
             return Ok(responseDto);
         }
-
-        private bool TransactionExists(int id)
-        {
-            return _context.Transactions.Any(e => e.id == id);
-        }
-        
 
 
         [HttpPost]
@@ -251,7 +230,7 @@ namespace CarteraCrypto_Api.Controllers
             }
 
             string url = $"https://criptoya.com/api/argenbtc/{transactionDto.cryptoCode.ToLower()}/ars";
-            decimal ars_Price;
+            decimal arsPrice;
 
             using (var httpClient = new HttpClient())
             { 
@@ -264,7 +243,7 @@ namespace CarteraCrypto_Api.Controllers
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
                         CriptoYaResponse result = JsonConvert.DeserializeObject<CriptoYaResponse>(responseContent);
-                        ars_Price = result.totalAsk;
+                        arsPrice = result.totalAsk;
                     }
                     else
                     {
@@ -277,14 +256,14 @@ namespace CarteraCrypto_Api.Controllers
                 }
               
             }
-            decimal ARS_Amount = transactionDto.cryptoAmount * ars_Price;
+            decimal arsAmount = transactionDto.cryptoAmount * arsPrice;
 
             var transaction = new CryptoTransaction
             {
                     cryptoCode = transactionDto.cryptoCode.ToLower(),
                     action = transactionDto.action.ToLower(),
                     cryptoAmount = transactionDto.cryptoAmount,
-                    money = ARS_Amount,
+                    money = arsAmount,
                     clientId = transactionDto.clientId,
                     datetime = parcedDate
             };
@@ -308,7 +287,5 @@ namespace CarteraCrypto_Api.Controllers
 
             return CreatedAtAction(nameof(Get), new { id = transaction.id}, responseDto);
         }
-       
-       
     }
 }

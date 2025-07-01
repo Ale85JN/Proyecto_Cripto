@@ -28,6 +28,41 @@ namespace CarteraCrypto_Api.Controllers
             return Ok(clientDto);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Client>> GetClient(int id)
+        {
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
+                return NotFound();
+
+            return Ok(client);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteClient(int id)
+        {
+            var client = await _context.Clients.FindAsync(id);
+            if (client == null)
+                return NotFound();
+
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, Client updatedClient)
+        {
+            if (id != updatedClient.id)
+            {
+                return BadRequest("El Id del cliente no coincide");
+            }
+            _context.Entry(updatedClient).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+
         [HttpPost]
         public async Task<ActionResult<Client>> Post(Client client)
         {
