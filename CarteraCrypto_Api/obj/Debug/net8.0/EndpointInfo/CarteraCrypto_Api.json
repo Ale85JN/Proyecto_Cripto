@@ -102,7 +102,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TransactionDto"
+                    "$ref": "#/components/schemas/TransactionResponseDto"
                   }
                 }
               },
@@ -110,7 +110,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TransactionDto"
+                    "$ref": "#/components/schemas/TransactionResponseDto"
                   }
                 }
               },
@@ -118,7 +118,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TransactionDto"
+                    "$ref": "#/components/schemas/TransactionResponseDto"
                   }
                 }
               }
@@ -134,17 +134,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TransactionDto"
+                "$ref": "#/components/schemas/TransactionCreateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TransactionDto"
+                "$ref": "#/components/schemas/TransactionCreateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TransactionDto"
+                "$ref": "#/components/schemas/TransactionCreateDto"
               }
             }
           }
@@ -155,17 +155,167 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/CryptoTransaction"
+                  "$ref": "#/components/schemas/TransactionResponseDto"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CryptoTransaction"
+                  "$ref": "#/components/schemas/TransactionResponseDto"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CryptoTransaction"
+                  "$ref": "#/components/schemas/TransactionResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/CryptoTransaction/{id}": {
+      "get": {
+        "tags": [
+          "CryptoTransaction"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionResponseDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "CryptoTransaction"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "CryptoTransaction"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/CryptoTransaction/client/{clientId}": {
+      "get": {
+        "tags": [
+          "CryptoTransaction"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionResponseDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionResponseDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TransactionResponseDto"
+                  }
                 }
               }
             }
@@ -260,27 +410,23 @@
         },
         "additionalProperties": false
       },
-      "CryptoTransaction": {
+      "TransactionCreateDto": {
         "required": [
           "action",
           "clientId",
           "cryptoAmount",
           "cryptoCode",
-          "datetime",
-          "money"
+          "datetime"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
           "cryptoCode": {
             "minLength": 1,
             "type": "string"
           },
           "action": {
             "minLength": 1,
+            "pattern": "^(purchase|sale)$",
             "type": "string"
           },
           "cryptoAmount": {
@@ -291,19 +437,14 @@
             "type": "integer",
             "format": "int32"
           },
-          "money": {
-            "minimum": 0.01,
-            "type": "number",
-            "format": "double"
-          },
           "datetime": {
-            "type": "string",
-            "format": "date"
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "TransactionDto": {
+      "TransactionResponseDto": {
         "type": "object",
         "properties": {
           "id": {
@@ -319,13 +460,16 @@
             "nullable": true
           },
           "cryptoAmount": {
-            "minimum": 0.01,
             "type": "number",
             "format": "double"
           },
           "money": {
             "type": "number",
             "format": "double"
+          },
+          "datetime": {
+            "type": "string",
+            "format": "date-time"
           },
           "clientId": {
             "type": "integer",
@@ -333,6 +477,38 @@
           },
           "clientName": {
             "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TransactionUpdateDto": {
+        "type": "object",
+        "properties": {
+          "cryptoCode": {
+            "pattern": "^[a-zA-Z]{3,10}$",
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "pattern": "^(purchase| sale)$",
+            "type": "string",
+            "nullable": true
+          },
+          "cryptoAmount": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "money": {
+            "minimum": 0.01,
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           },
           "datetime": {

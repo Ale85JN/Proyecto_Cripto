@@ -115,7 +115,6 @@ namespace CarteraCrypto_Api.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-
             }
             var transaction = await _context.Transactions
                 .Include(t => t.Client)
@@ -130,18 +129,21 @@ namespace CarteraCrypto_Api.Controllers
             {
                 transaction.cryptoCode = updateDto.cryptoCode.ToLower();
             }
+
             if (updateDto.action != null)
             { 
                 transaction.action = updateDto.action.ToLower();
             }
+
             if (updateDto.cryptoAmount.HasValue)
             {
-                if (updateDto.cryptoAmount != 0)
+                if (updateDto.cryptoAmount <= 0)
                 {
                    return BadRequest("La cantidada de criptomonedas debe ser mayor a 0 ");
                 }
                 transaction.cryptoAmount = updateDto.cryptoAmount.Value;
             }
+
             if (updateDto.money.HasValue)
             {
                 if (updateDto.money <= 0)
@@ -170,6 +172,7 @@ namespace CarteraCrypto_Api.Controllers
                 }
                 transaction.clientId = updateDto.clientId.Value;
             }
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -226,9 +229,29 @@ namespace CarteraCrypto_Api.Controllers
             {
                 return BadRequest("La cantidad de Criptomonedas debe ser mayor a 0");
             }
+            if (transactionDto.action.ToLower() == "sale")
+            {
+                var previousTransactions = await _context.Transactions
+                    .Where(t => t.clientId == transactionDto.clientId && t.cryptoCode == transactionDto.cryptoCode.ToLower())
+                    .ToListAsync();
+
+                var totalPurchased = previousTransactions.Where(t => t.action == "purchase")
+                    .Sum(t => t.cryptoAmount);
+
+                var totalSold = previousTransactions.Where(t => t.action == "sale")
+                                    .Sum(t => t.cryptoAmount);
+
+                var available = totalPurchased - totalSold;
+
+                if (transactionDto.cryptoAmount > available)
+                {
+                    return BadRequest($"No se puede vender {transactionDto.cryptoAmount} {transactionDto.cryptoCode.ToUpper()}. Disponible:{available}");
+                }
+
+            }
 
             string url = $"https://criptoya.com/api/argenbtc/{transactionDto.cryptoCode.ToLower()}/ars";
-            decimal ARS_Price;
+            decimal ars_Price;
 
             using (var httpClient = new HttpClient())
             { 
@@ -241,7 +264,7 @@ namespace CarteraCrypto_Api.Controllers
                     {
                         var responseContent = await response.Content.ReadAsStringAsync();
                         CriptoYaResponse result = JsonConvert.DeserializeObject<CriptoYaResponse>(responseContent);
-                        ARS_Price = result.totalAsk;
+                        ars_Price = result.totalAsk;
                     }
                     else
                     {
@@ -254,7 +277,7 @@ namespace CarteraCrypto_Api.Controllers
                 }
               
             }
-            decimal ARS_Amount = transactionDto.cryptoAmount * ARS_Price;
+            decimal ARS_Amount = transactionDto.cryptoAmount * ars_Price;
 
             var transaction = new CryptoTransaction
             {
