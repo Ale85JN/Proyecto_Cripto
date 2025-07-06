@@ -12,7 +12,7 @@ const router = createRouter({
     {
       path: '/clientsRegister',
       name: 'clientsRegister',
-      component: () => import('../modules/clientsRegister/components/ClientsRegister.vue'),
+      component: () => import('../modules/records/views/clientsRegisterView.vue'),
     },
      {
       path: '/newPurchase',
