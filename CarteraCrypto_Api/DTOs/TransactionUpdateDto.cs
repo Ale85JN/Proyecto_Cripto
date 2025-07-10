@@ -4,13 +4,13 @@ namespace CarteraCrypto_Api.DTOs
 {
     public class TransactionUpdateDto
     {
-        [RegularExpression("^[a-zA-Z]{3,10}$", ErrorMessage ="Codigo de Criptomoneda invalido")]
+        [RegularExpression("^[a-zA-Z]{3,10}$", ErrorMessage ="Invalid Crypto code")]
         public string? cryptoCode { get; set; }
-        [RegularExpression("^(purchase| sale)$", ErrorMessage = "La accion debe ser 'purchase' o 'sale'.")]
+        [RegularExpression("^(purchase| sale)$", ErrorMessage = "The action must be 'purchase' or 'sale'.")]
         public string? action { get; set; }
-        [Range(0.00000001, double.MaxValue, ErrorMessage = "La cantidad debe ser mayor a 0")]
+        [Range(0.00000001, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
         public decimal? cryptoAmount { get; set; }
-        [Range(0.01, double.MaxValue, ErrorMessage = "El monto debe ser mayor a 0")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
         public decimal? money { get; set; }
         public int? clientId { get; set; }
         public string? datetime { get; set; }

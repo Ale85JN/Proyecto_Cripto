@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.OpenApi.MicrosoftExtensions;
+using System.ComponentModel.DataAnnotations;
 
 namespace CarteraCrypto_Api.DTOs
 {
@@ -7,10 +8,10 @@ namespace CarteraCrypto_Api.DTOs
         [Required]
         public string cryptoCode { get; set; }
         [Required]
-        [RegularExpression("^(purchase|sale)$", ErrorMessage = "La acción debe ser 'purchase' o 'sale'.")]
+        [RegularExpression("^(purchase|sale)$", ErrorMessage = "The action must be 'purchase' or 'sale'.")]
         public string action { get; set; }
         [Required]
-        [Range(0.00000001, double.MaxValue, ErrorMessage ="La Cantidad debe ser mayor a 0.")]
+        [Range(0.00000001, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
         public decimal cryptoAmount { get; set; }
         [Required]
         public int clientId { get; set; }

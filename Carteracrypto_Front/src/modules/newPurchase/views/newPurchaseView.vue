@@ -1,0 +1,99 @@
+<template>
+<div>
+  <h2>New Crypto Purchase</h2>
+  <Form :validation-schema="schema" @submit="onSubmit">
+    <div class="form">
+      <label for="cryptoCode">Cryptocurrency:</label>
+      <Field as="select" v-model="cryptoCode" name="cryptoCode">
+        <option value="">Select</option>
+        <option value="BTC">Bitcoin (BTC)</option>
+        <option value="ETH">Ethereum (ETH)</option>
+        <option value="USDT">Tether (USDT)</option>
+      </Field>
+      <ErrorMessage name="cryptoCode" />
+    </div>
+
+    <div class="form">
+      <label for="cryptoAmount">Amount:</label>
+      <Field v-model="cryptoAmount" type="number" step="0.00001" name="cryptoAmount"/>
+       <ErrorMessage name="cryptoAmount" />
+    </div>
+
+    <div class="form">
+      <label for="clientId">Client:</label>
+      <Field as="select" v-model="clientId" name="clientId"/>
+      <option value="">Select a client</option>
+      <option v-for="client in clients" :key="client.id" :value="clientId">
+         {{ client.name }} ({{ client.email }})
+      </option>
+      <ErrorMessage name="clientId" />
+    </div>
+
+    <div class="form">
+      <label for="datetime">Date and Time:</label>
+      <Field v-model="datetime" type="datetime-local" name="datetime"/>
+      <ErrorMessage name="datetime" />
+    </div>
+
+    <div class="form">
+      <button type="submit">Register Purchase</button>
+    </div>
+  </Form>
+</div>
+</template>
+
+<script setup>
+import {Form, Field, ErrorMessage } from 'vee-validate';
+import {ref, onMounted} from 'vue';
+
+const cryptoCode =ref('');
+const cryptoAmount =ref('');
+const clientId =ref('');
+const datetime =ref('');
+const clients =ref([]);
+
+onMounted(async () => {
+  try{
+  const res = await fetch('http://localhost:7189/api/Client');
+  const data = await res.json();
+  clients.value = data;
+}catch(error) {
+  console.error("Error fetching clients:", error);
+}
+});
+
+const onSubmit = async () => {
+  const purchase = {
+    cryptoCode: cryptoCode.value,
+    cryptoAmount: cryptoAmount.value,
+    clientId: clientId.value,
+    datetime:datetime.value,
+    action: 'purchase'
+  };
+  try{
+  const response = await fetch('http://localhost:7189/api/CryptoTransaction',{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(purchase)
+  });
+
+  if(!response.ok) throw new Error('Error saving Purchase');
+
+  alert('Purchase registeres successfully!!');
+   cryptoCode.value= '';
+   cryptoAmount.value= 0;
+   clientId.value= '';
+   datetime.value='';
+   window.location.href = '/';
+  } catch (error) {
+    console.error(error);
+    alert('Error saving purchase');
+  }
+};
+</script>
+
+<style scoped>
+.form {
+  margin-bottom: 10px;
+}
+</style>

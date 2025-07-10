@@ -15,19 +15,19 @@ const router = createRouter({
       component: () => import('../modules/records/views/clientsRegisterView.vue'),
     },
      {
-      path: '/newPurchase',
+      path: '/newPurchaseView',
       name: 'newPurchase',
-      component: () => import('../modules/newPurchase/components/NewPurchase.vue'),
+      component: () => import('../modules/newPurchase/views/newPurchaseView.vue'),
     },
      {
-      path: '/newSale',
+      path: '/newSaleView',
       name: 'newSale',
-      component: () => import('../modules/newSale/components/NewSale.vue'),
+      component: () => import('../modules/newSale/views/newSaleView.vue'),
     },
      {
-      path: '/movementsRecord',
+      path: '/movementsRecordView',
       name: 'movementsRecord',
-      component: () => import('../modules/movementsRecord/components/MovementsRecord.vue'),
+      component: () => import('../modules/movementsRecord/views/movementsRecordView.vue'),
     },
   ],
 })
