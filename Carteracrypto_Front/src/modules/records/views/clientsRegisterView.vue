@@ -22,7 +22,7 @@
 
 <script setup>
 import {Form, Field, ErrorMessage} from 'vee-validate';
-import {schema} from '../schemas/validationSchemas';
+import {schema} from '../schemas/clientsValidationSchemas';
 import { ref } from 'vue';
 
 const name = ref('');

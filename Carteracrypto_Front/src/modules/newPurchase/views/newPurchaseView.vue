@@ -21,12 +21,13 @@
 
     <div class="form">
       <label for="clientId">Client:</label>
-      <Field as="select" v-model="clientId" name="clientId"/>
-      <option value="">Select a client</option>
-      <option v-for="client in clients" :key="client.id" :value="clientId">
-         {{ client.name }} ({{ client.email }})
-      </option>
-      <ErrorMessage name="clientId" />
+      <Field as="select" v-model="clientId" name="clientId">
+        <option value="">Select a client</option>
+        <option v-for="client in clients" :key="client.id" :value="client.id">
+          {{ client.name }} ({{ client.email }})
+        </option>
+      </Field>
+<ErrorMessage name="clientId" />
     </div>
 
     <div class="form">
@@ -45,6 +46,7 @@
 <script setup>
 import {Form, Field, ErrorMessage } from 'vee-validate';
 import {ref, onMounted} from 'vue';
+import{schema} from '../schemas/purchaseValidationSchemas.js';
 
 const cryptoCode =ref('');
 const cryptoAmount =ref('');
@@ -79,7 +81,7 @@ const onSubmit = async () => {
 
   if(!response.ok) throw new Error('Error saving Purchase');
 
-  alert('Purchase registeres successfully!!');
+  alert('Purchase registered successfully!!');
    cryptoCode.value= '';
    cryptoAmount.value= 0;
    clientId.value= '';
