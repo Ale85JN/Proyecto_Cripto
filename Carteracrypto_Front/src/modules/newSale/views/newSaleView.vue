@@ -6,11 +6,12 @@
   <Form :validation-schema="schema" @submit="onSubmit">
     <div class="form">
       <label for="cryptoCode">Cryptocurrency:</label>
-      <Field as="select" name="cryptoCode" v-model="cryptoCode" />
+      <Field as="select" name="cryptoCode" v-model="cryptoCode">
         <option disabled value="">Select a cryptocurrency</option>
-         <option value="BTC">Bitcoin (BTC)</option>
+        <option value="BTC">Bitcoin (BTC)</option>
         <option value="ETH">Ethereum (ETH)</option>
         <option value="USDT">Tether (USDT)</option>
+      </Field>
       <ErrorMessage name="cryptoCode" />
     </div>
 
@@ -56,25 +57,27 @@ const datetime = ref('');
 const clients = ref([]);
 
 onMounted(async () => {
-  const res = await fetch('http://localhost:7189/api/Client');
+  const res = await fetch('https://localhost:7189/api/Client');
   clients.value = await res.json();
 });
 
 const onSubmit = async () => {
   const sale = {
-    cryptocode: cryptoCode.value,
-    cryptoAmount: parseFloat(cryptoAmount.value),
-    clientId: parseInt(clientId.value),
-    datetime: datetime.value,
-    action: 'sale'
+    Cryptocode: cryptoCode.value,
+    CryptoAmount: parseFloat(cryptoAmount.value),
+    ClientId: parseInt(clientId.value),
+    Datetime: datetime.value,
+    Action: 'sale'
   };
-
+  console.log("==> Objeto enviado al backend:", JSON.stringify(sale));
   try {
-    const res = await fetch ('http://localhost:7189/api/CryptoTransaction',{
+    const res = await fetch ('https://localhost:7189/api/CryptoTransaction',{
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(sale)
     });
+
+    console.log("==> Respuesta del servidor:", res);
     if(!res.ok) throw new Error('Failed to save transaction');
 
     alert('Sale saved Successfully!!');
@@ -82,9 +85,10 @@ const onSubmit = async () => {
     cryptoAmount.value = null;
     clientId.value = '';
     datetime.value = '';
-    window.location.href = '/movementsRecord';
-  } catch (error) {
-    console.error(error);
+    // window.location.href = '/movementsRecord';
+  }
+  catch (error) {
+    console.error("==> Error al guardar la venta:", error);
     alert('An error occurred while saving the sale.');
   }
 };

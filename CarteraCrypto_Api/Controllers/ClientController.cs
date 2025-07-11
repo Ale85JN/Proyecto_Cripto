@@ -72,7 +72,7 @@ namespace CarteraCrypto_Api.Controllers
             }
             _context.Clients.Add(client);
             await _context.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetClient), new { id = client.id }, client);
+            return CreatedAtAction(nameof(Post), new { id = client.id }, client);
         }
 
 

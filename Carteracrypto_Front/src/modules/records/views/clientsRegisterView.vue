@@ -29,26 +29,30 @@ const name = ref('');
 const email = ref('');
 
 const onSubmit = async () => {
-const newClient = {
+ const newClient = {
   name: name.value,
   email: email.value
-};
-try {
-const response = await fetch('http://localhost:7189/api/Client',{
-  method: 'POST',
+ };
+ console.log("==> Datos del cliente a enviar:", newClient);
+ try {
+ const response = await fetch('https://localhost:7189/api/Client',{
+  method:'POST',
   headers: {'Content-Type':'application/json'},
   body: JSON.stringify(newClient)
-});
-if(!response.ok) throw new Error('Error saving Client');
+ });
 
-alert('Client saved successfully');
-name.value = '';
-email.value = '';
-window.location.href='/';
-}catch(error){
-  console.error(error);
+ console.log("==> Respuesta del servidor:", response);
+ if(!response.ok) throw new Error('Error saving Client');
+
+ alert('Client saved successfully');
+ name.value = '';
+ email.value = '';
+
+ }
+ catch(error){
+    console.log("==> Respuesta del servidor:", error);
   alert('An Error occurred while saving the Client')
-}
+ }
 };
 </script>
 

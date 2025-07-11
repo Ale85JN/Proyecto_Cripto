@@ -27,7 +27,7 @@
           {{ client.name }} ({{ client.email }})
         </option>
       </Field>
-<ErrorMessage name="clientId" />
+      <ErrorMessage name="clientId" />
     </div>
 
     <div class="form">
@@ -56,7 +56,7 @@ const clients =ref([]);
 
 onMounted(async () => {
   try{
-  const res = await fetch('http://localhost:7189/api/Client');
+  const res = await fetch('https://localhost:7189/api/Client');
   const data = await res.json();
   clients.value = data;
 }catch(error) {
@@ -65,30 +65,37 @@ onMounted(async () => {
 });
 
 const onSubmit = async () => {
+  const formattedDateTime = datetime.value.replace('T', ' ');
+
   const purchase = {
     cryptoCode: cryptoCode.value,
-    cryptoAmount: cryptoAmount.value,
-    clientId: clientId.value,
-    datetime:datetime.value,
-    action: 'purchase'
+    action: 'purchase',
+    cryptoAmount: parseFloat(cryptoAmount.value),
+    clientId: parseInt(clientId.value),
+    datetime: formattedDateTime
   };
-  try{
-  const response = await fetch('http://localhost:7189/api/CryptoTransaction',{
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(purchase)
-  });
 
-  if(!response.ok) throw new Error('Error saving Purchase');
+  try {
+    const response = await fetch('https://localhost:7189/api/CryptoTransaction', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(purchase)
+    });
 
-  alert('Purchase registered successfully!!');
-   cryptoCode.value= '';
-   cryptoAmount.value= 0;
-   clientId.value= '';
-   datetime.value='';
-   window.location.href = '/';
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error("==> Error del backend:", errorBody);
+      throw new Error('Error saving Purchase');
+    }
+
+    alert('Purchase registered successfully!!');
+    cryptoCode.value = '';
+    cryptoAmount.value = '';
+    clientId.value = '';
+    datetime.value = '';
+    // window.location.href = '/';
   } catch (error) {
-    console.error(error);
+    console.error("==> Error al guardar la compra:", error);
     alert('Error saving purchase');
   }
 };

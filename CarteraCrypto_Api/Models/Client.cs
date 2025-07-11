@@ -7,11 +7,11 @@ namespace CarteraCrypto_Api.Models
         [Key]
         public int id { get; set; }
 
-        [Required(ErrorMessage = "El Nombre es obligatorio")]
+        [Required(ErrorMessage = "Name is required")]
         public string name { get; set; }
 
-        [Required(ErrorMessage = "El email es obligatorio")]
-        [EmailAddress(ErrorMessage = "Formato de email inválido")]
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Email format is invalid")]
         public string email { get; set; }
     }
 }
