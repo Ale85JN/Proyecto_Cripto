@@ -21,7 +21,7 @@ namespace CarteraCrypto_Api.Controllers
             var clients = await _context.Clients.ToListAsync();
             var clientDto = clients.Select(c => new ClientDto 
             {
-                
+                id = c.id,
                 name = c.name,
                 email = c.email
             }).ToList();

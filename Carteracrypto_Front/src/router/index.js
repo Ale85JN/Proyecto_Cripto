@@ -5,10 +5,11 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
 
+    
     {
       path: '/clientsRegister',
       name: 'clientsRegister',
-      component: () => import('../modules/records/views/clientsRegisterView.vue'),
+      component: () => import('../modules/clients/views/clientsRegisterView.vue'),
     },
     {
       path: '/newPurchaseView',
@@ -25,6 +26,11 @@ const router = createRouter({
       name: 'movementsRecord',
       component: () => import('../modules/movementsRecord/views/movementsRecordView.vue'),
     },
+    {
+      path: '/transactions/:id',
+      name: 'TransactionDetail',
+      component: () => import('../modules/movementsRecord/views/transactionDetailView.vue')
+    }
   ],
 })
 

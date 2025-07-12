@@ -54,11 +54,17 @@ const clientId =ref('');
 const datetime =ref('');
 const clients =ref([]);
 
+
+console.log("Lista de clientes disponibles:", clients.value);
+console.log("Cliente seleccionado:", clientId.value);
+
 onMounted(async () => {
   try{
+
   const res = await fetch('https://localhost:7189/api/Client');
   const data = await res.json();
   clients.value = data;
+  console.log("Clientes cargados:", clients.value);
 }catch(error) {
   console.error("Error fetching clients:", error);
 }
@@ -74,7 +80,11 @@ const onSubmit = async () => {
     clientId: parseInt(clientId.value),
     datetime: formattedDateTime
   };
-
+  if (!clients.value.some(c => c.id === purchase.clientId)) {
+  console.error("El clientId no coincide con ninguno en la base de datos.");
+  return;
+  }
+  console.log("==> Payload a enviar:", purchase);
   try {
     const response = await fetch('https://localhost:7189/api/CryptoTransaction', {
       method: 'POST',
@@ -82,10 +92,7 @@ const onSubmit = async () => {
       body: JSON.stringify(purchase)
     });
 
-    if (!response.ok) {
-      const errorBody = await response.text();
-      console.error("==> Error del backend:", errorBody);
-      throw new Error('Error saving Purchase');
+    if (!response.ok) {throw new Error('Error saving Purchase');
     }
 
     alert('Purchase registered successfully!!');

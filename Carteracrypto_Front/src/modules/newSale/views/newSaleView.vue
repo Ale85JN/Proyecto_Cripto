@@ -62,14 +62,17 @@ onMounted(async () => {
 });
 
 const onSubmit = async () => {
+  const formattedDateTime = datetime.value.replace('T', ' ');
+
   const sale = {
-    Cryptocode: cryptoCode.value,
-    CryptoAmount: parseFloat(cryptoAmount.value),
-    ClientId: parseInt(clientId.value),
-    Datetime: datetime.value,
-    Action: 'sale'
-  };
+  cryptoCode: cryptoCode.value,
+  cryptoAmount: parseFloat(cryptoAmount.value),
+  clientId: parseInt(clientId.value),
+  datetime: formattedDateTime,
+  action: 'sale'
+ };
   console.log("==> Objeto enviado al backend:", JSON.stringify(sale));
+  console.log("==> Payload correcto a enviar:", sale);
   try {
     const res = await fetch ('https://localhost:7189/api/CryptoTransaction',{
       method: 'POST',
@@ -78,6 +81,7 @@ const onSubmit = async () => {
     });
 
     console.log("==> Respuesta del servidor:", res);
+
     if(!res.ok) throw new Error('Failed to save transaction');
 
     alert('Sale saved Successfully!!');
@@ -85,7 +89,7 @@ const onSubmit = async () => {
     cryptoAmount.value = null;
     clientId.value = '';
     datetime.value = '';
-    // window.location.href = '/movementsRecord';
+    window.location.href = '/movementsRecord';
   }
   catch (error) {
     console.error("==> Error al guardar la venta:", error);
