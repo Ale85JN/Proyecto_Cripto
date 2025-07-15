@@ -4,10 +4,12 @@
   <div class="sidebar">
     <h2>Operations</h2>
     <ul>
-      <li><router-link to="/clientsRegister">New Clients Register</router-link></li>
-      <li><router-link to="/newSaleView">New Sale</router-link></li>
-      <li><router-link to="/newPurchaseView">New Purchase</router-link></li>
-      <li> <router-link to="/movementsRecordView">Movements Record</router-link></li>
+      <li><router-link to="/clientsRegister">New Clients Register</router-link></li><br>
+      <li><router-link to="/clients">Clients</router-link></li><br>
+      <li><router-link to="/newPurchaseView">New Purchase</router-link></li><br>
+      <li><router-link to="/portfolioChartView">Graphic Portfolio</router-link></li><br>
+      <li><router-link to="/newSaleView">New Sale</router-link></li><br>
+      <li> <router-link to="/movementsRecordView">Movements Record</router-link></li><br>
     </ul>
   </div>
 </template>

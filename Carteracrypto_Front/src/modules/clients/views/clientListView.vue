@@ -14,8 +14,8 @@
           <td>{{ client.name }}</td>
           <td>{{ client.email }}</td>
           <td>
-            <button @click="editClient(client.id)">Editar</button>
-            <button @click="deleteClient(client.id)">Eliminar</button>
+            <button @click="editClient(client.id)">Edit</button>
+            <button @click="deleteClient(client.id)">Delete</button>
           </td>
         </tr>
       </tbody>
@@ -36,7 +36,8 @@ onMounted(async () => {
     const res = await fetch('https://localhost:7189/api/Client')
     if (!res.ok) throw new Error('Error loading clients')
     clients.value = await res.json()
-  } catch (error) {
+  }
+  catch (error) {
     alert('Error loading clients')
     console.error(error)
   }
@@ -44,12 +45,12 @@ onMounted(async () => {
 
 
 const editClient = (id) => {
-  router.push(`/clients/${id}/edit`)
+  router.push({ name: 'clientDetail', params: { id } })
 }
 
 
 const deleteClient = async (id) => {
-  if (!confirm('¿Sure you want to delete this client?')) return
+  if (!confirm('Sure you want to delete this client?')) return
 
   try {
     const res = await fetch(`https://localhost:7189/api/Client/${id}`, {

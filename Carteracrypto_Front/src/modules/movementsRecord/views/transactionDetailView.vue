@@ -60,12 +60,14 @@ const isViewMode = computed(() => mode === 'view');
 
 const transaction = ref(null);
 const formattedDate = ref('');
+const clientId = ref(null);
 
 onMounted(async () => {
   const res = await fetch(`https://localhost:7189/api/CryptoTransaction/${id}`);
   const data = await res.json();
   transaction.value = data;
-  
+  clientId.value = data.clientId;
+
   const date = new Date(data.datetime);
   formattedDate.value = date.toISOString().slice(0, 16);
 });
@@ -93,8 +95,16 @@ const handleSubmit = async () => {
   }
 };
 
-const goBack = () => {
+/* const goBack = () => {
   router.back();
+}; */
+const goBack = () => {
+  if(clientId.value){
+    router.push({name:'clientDetail', params: {id: clientId.value}});
+  }
+  else{
+    router.push('/clients');
+  }
 };
 </script>
 

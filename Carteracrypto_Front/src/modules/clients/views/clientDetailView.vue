@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2>Editar Cliente</h2>
+    <h2>Edit Client</h2>
     <form @submit.prevent="onSubmit">
       <div>
-        <label for="name">Nombre:</label>
+        <label for="name">Name:</label>
         <input id="name" v-model="client.name" type="text" required />
       </div>
 
@@ -13,8 +13,8 @@
       </div>
 
       <div style="margin-top: 12px;">
-        <button type="submit">Guardar Cambios</button>
-        <button type="button" @click="goBack" style="margin-left: 8px;">Cancelar</button>
+        <button type="submit">Save Changes</button>
+        <button type="button" @click="goBack" style="margin-left: 8px;">Cancel</button>
       </div>
     </form>
   </div>
@@ -38,10 +38,11 @@ const clientId = route.params.id
 onMounted(async () => {
   try {
     const res = await fetch(`https://localhost:7189/api/Client/${clientId}`)
-    if (!res.ok) throw new Error('Cliente no encontrado')
+    if (!res.ok) throw new Error('Client not Found')
     const data = await res.json()
     client.value = data
-  } catch (error) {
+  }
+  catch (error) {
     alert('Error loading client')
     console.error(error)
     router.push('/clients')
@@ -57,13 +58,13 @@ const onSubmit = async () => {
     })
 
     if (res.status === 204) {
-      alert('Cliente actualizado correctamente')
+      alert('Client successfully updated')
       router.push('/clients')
     } else {
-      alert('Error al actualizar cliente')
+      alert('Error updating Client')
     }
   } catch (error) {
-    alert('Error al actualizar cliente')
+    alert('Error updating Client')
     console.error(error)
   }
 }

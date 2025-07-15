@@ -5,7 +5,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
 
-    
+
     {
       path: '/clientsRegister',
       name: 'clientsRegister',
@@ -28,8 +28,23 @@ const router = createRouter({
     },
     {
       path: '/transactions/:id',
-      name: 'TransactionDetail',
+      name: 'transactionDetail',
       component: () => import('../modules/movementsRecord/views/transactionDetailView.vue')
+    },
+   {
+      path: '/clients',
+      name: 'clientsList',
+      component: () => import('../modules/clients/views/clientListView.vue')
+    },
+   {
+      path: '/clients/:id',
+      name: 'clientDetail',
+      component: () => import('../modules/clients/views/clientDetailView.vue')
+    },
+   {
+      path: '/portfolioChartView',
+      name: 'portfolioChartView',
+      component: () => import('../modules/portfolio/views/portfolioChartView.vue')
     }
   ],
 })
