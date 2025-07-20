@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\ProyectoCripto\\CarteraCrypto_Api\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:models\\client.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\dtos\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:dtos\\clientdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|solutionrelative:controllers\\cryptotransactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B09A2634-C31A-4ABF-93BB-EF5458A1EA5F}|CarteraCrypto_Api.csproj|c:\\proyectocripto\\carteracrypto_api\\controllers\\clientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,19 +46,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CryptoTransactionController.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Controllers\\CryptoTransactionController.cs",
               "RelativeDocumentMoniker": "Controllers\\CryptoTransactionController.cs",
               "ToolTip": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Controllers\\CryptoTransactionController.cs",
               "RelativeToolTip": "Controllers\\CryptoTransactionController.cs",
-              "ViewState": "AgIAAAQBAAAAAAAAAAAuwP4AAABFAAAAAAAAAA==",
+              "ViewState": "AgIAAMUAAAAAAAAAAAAuwMwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-20T23:01:44.833Z"
+              "WhenOpened": "2025-07-20T23:01:44.833Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ClientDto.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\DTOs\\ClientDto.cs",
               "RelativeDocumentMoniker": "DTOs\\ClientDto.cs",
@@ -70,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Client.cs",
               "DocumentMoniker": "C:\\ProyectoCripto\\CarteraCrypto_Api\\Models\\Client.cs",
               "RelativeDocumentMoniker": "Models\\Client.cs",

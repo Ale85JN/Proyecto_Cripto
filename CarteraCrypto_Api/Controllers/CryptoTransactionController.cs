@@ -201,7 +201,7 @@ namespace CarteraCrypto_Api.Controllers
 
             if (!DateTime.TryParseExact(transactionDto.datetime, "yyyy-MM-dd HH:mm",CultureInfo.InvariantCulture, DateTimeStyles.None, out var parcedDate ))
             { 
-                return BadRequest("Formato de fecha invalido");
+                return BadRequest("invalid date format");
             }
 
             if (transactionDto.cryptoAmount <= 0)
