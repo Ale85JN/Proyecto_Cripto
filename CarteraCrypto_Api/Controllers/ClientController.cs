@@ -56,7 +56,7 @@ namespace CarteraCrypto_Api.Controllers
         {
             if (id != updatedClient.id)
             {
-                return BadRequest("El Id del cliente no coincide");
+                return BadRequest("The client ID does not match");
             }
             _context.Entry(updatedClient).State = EntityState.Modified;
             await _context.SaveChangesAsync();

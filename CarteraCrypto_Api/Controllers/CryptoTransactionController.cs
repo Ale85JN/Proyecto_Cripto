@@ -76,7 +76,7 @@ namespace CarteraCrypto_Api.Controllers
             var clientExists = await _context.Clients.AnyAsync(c => c.id == clientId);
             if (!clientExists)
             {
-                return NotFound($"No se encontro el cliente con el Id {clientId}");
+                return NotFound($"The client with the Id {clientId} was not found ");
             }
 
             var transactions = await _context.Transactions
@@ -139,7 +139,7 @@ namespace CarteraCrypto_Api.Controllers
             {
                 if (updateDto.cryptoAmount <= 0)
                 {
-                   return BadRequest("La cantidada de criptomonedas debe ser mayor a 0 ");
+                   return BadRequest("The amount of cryptocurrency must be greater than 0");
                 }
                 transaction.cryptoAmount = updateDto.cryptoAmount.Value;
             }
@@ -148,7 +148,7 @@ namespace CarteraCrypto_Api.Controllers
             {
                 if (updateDto.money <= 0)
                 {
-                    return BadRequest("El monto debe ser mayor a 0");
+                    return BadRequest("The amount must be greater than 0");
                 }
                 transaction.money = updateDto.money.Value;
             }
@@ -158,7 +158,7 @@ namespace CarteraCrypto_Api.Controllers
                 if (!DateTime.TryParseExact(updateDto.datetime, "yyyy-MM-dd HH:mm",
                     CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsedDate))
                 {
-                    return BadRequest("Formato de fecha invalido");
+                    return BadRequest("Invalid date format");
                 }
                 transaction.datetime = parsedDate;
             }
@@ -168,11 +168,11 @@ namespace CarteraCrypto_Api.Controllers
                 var clientExists = await _context.Clients.AnyAsync(c => c.id == updateDto.clientId.Value);
                 if (!clientExists)
                 {
-                    return NotFound($"No se encontró el cliente con ID {updateDto.clientId.Value}");
+                    return NotFound($" The client with the Id { updateDto.clientId.Value} was not found");
                 }
                 transaction.clientId = updateDto.clientId.Value;
             }
-
+           
 
             await _context.SaveChangesAsync();
             var responseDto = new TransactionResponseDto
@@ -206,7 +206,7 @@ namespace CarteraCrypto_Api.Controllers
 
             if (transactionDto.cryptoAmount <= 0)
             {
-                return BadRequest("La cantidad de Criptomonedas debe ser mayor a 0");
+                return BadRequest("The amount of cryptocurrency must be greater than 0");
             }
             if (transactionDto.action.ToLower() == "sale")
             {
@@ -224,7 +224,7 @@ namespace CarteraCrypto_Api.Controllers
 
                 if (transactionDto.cryptoAmount > available)
                 {
-                    return BadRequest($"No se puede vender {transactionDto.cryptoAmount} {transactionDto.cryptoCode.ToUpper()}. Disponible:{available}");
+                    return BadRequest($"Can't sell {transactionDto.cryptoAmount} {transactionDto.cryptoCode.ToUpper()}. Available:{available}");
                 }
 
             }
@@ -247,12 +247,12 @@ namespace CarteraCrypto_Api.Controllers
                     }
                     else
                     {
-                        return BadRequest("No se pudo obtener el precio de CriptoYa.");
+                        return BadRequest("Could not get price from CriptoYa.");
                     }
                 }
                 catch(Exception ex)
                 {
-                    return StatusCode(500, $"Error al procesar la solicitud: {ex.Message}");
+                    return StatusCode(500, $"Error processing request: {ex.Message}");
                 }
               
             }

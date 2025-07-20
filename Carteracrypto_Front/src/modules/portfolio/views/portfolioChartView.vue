@@ -14,7 +14,7 @@
     </div>
 
     <PieChart v-if="transactions.length > 0" :data="transactions" />
-    <p v-else-if="selectedClientId">This customer has no recorded purchase transactions.</p>
+    <p v-else-if="selectedClientId">This customer has no purchase transactions recorded.</p>
   </div>
 </template>
 
