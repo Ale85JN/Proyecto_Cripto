@@ -73,12 +73,44 @@ const deleteClient = async (id) => {
 table {
   border-collapse: collapse;
   width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 th, td {
-  border: 1px solid #ccc;
-  padding: 8px;
+  border: 2px solid #555;
+  padding: 10px;
+  text-align: left;
 }
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+td {
+  background-color: #fff;
+  color: #222;
+}
+
+tr:hover {
+  background-color: #f9f9f9;
+}
+
 button {
   margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+.selected {
+  background-color: #cce5ff !important;
 }
 </style>

@@ -95,16 +95,8 @@ const handleSubmit = async () => {
   }
 };
 
-/* const goBack = () => {
+ const goBack = () => {
   router.back();
-}; */
-const goBack = () => {
-  if(clientId.value){
-    router.push({name:'clientDetail', params: {id: clientId.value}});
-  }
-  else{
-    router.push('/clients');
-  }
 };
 </script>
 

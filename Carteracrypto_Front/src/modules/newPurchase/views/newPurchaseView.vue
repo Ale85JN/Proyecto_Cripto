@@ -100,7 +100,7 @@ const onSubmit = async () => {
     cryptoAmount.value = '';
     clientId.value = '';
     datetime.value = '';
-    // window.location.href = '/';
+    window.location.href = '/';
   } catch (error) {
     console.error("==> Error al guardar la compra:", error);
     alert('Error saving purchase');

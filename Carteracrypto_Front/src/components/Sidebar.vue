@@ -10,6 +10,8 @@
       <li><router-link to="/portfolioChartView">Graphic Portfolio</router-link></li><br>
       <li><router-link to="/newSaleView">New Sale</router-link></li><br>
       <li> <router-link to="/movementsRecordView">Movements Record</router-link></li><br>
+      <li> <router-link to="/">Home</router-link></li><br>
+
     </ul>
   </div>
 </template>
@@ -23,5 +25,9 @@
 width: 180px;
 background-color:  lightgray;
 padding: 15px;
+}
+.sidebar a.router-link-active {
+  font-weight: bold;
+  color: darkblue;
 }
 </style>

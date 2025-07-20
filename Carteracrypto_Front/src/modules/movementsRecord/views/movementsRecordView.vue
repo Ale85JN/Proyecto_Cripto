@@ -2,7 +2,8 @@
 <!----eslint-disable-next-line vue/multi-word-component-names-->
 
 <template>
-  <div>
+
+  <div class="container">
     <h2>Movements Record</h2>
 
     <div class="form">
@@ -16,7 +17,7 @@
       <button @click="fetchTransactions">Search</button>
     </div>
 
-    <div v-if="transactions.length > 0">
+    <div v-if="transactions.length > 0" class="table-wrapper">
       <table border="1">
         <thead>
           <tr>
@@ -30,12 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr
-            v-for="tx in transactions"
-            :key="tx.id"
-            :class="{ selected: selectedTransactionId === tx.id }"
-            @click="selectTransaction(tx)"
-          >
+          <tr v-for="tx in transactions" :key="tx.id" :class="{ selected: selectedTransactionId === tx.id }" @click="selectTransaction(tx)">
             <td>{{ tx.cryptoCode.toUpperCase() }}</td>
             <td>{{ tx.action }}</td>
             <td>{{ tx.cryptoAmount }}</td>
@@ -123,28 +119,57 @@ const deleteTransaction = async (id) => {
 <style scoped>
 .form {
   margin-bottom: 12px;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-width: 500px;
 }
 
-.selected {
-  background-color: #d0f0ff !important;
+.select{
+padding: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color:#f8f8f8;
+}
+.button {
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  background-color:#3498db;
+}
+
+button:hover {
+  background-color:#2980b9;
+  cursor: pointer;
 }
 
 table {
-  border-collapse: collapse;
   width: 100%;
+  border-collapse: collapse;
+  background-color: #f9f9f9;
 }
 
-td,
-th {
-  padding: 8px;
+th, td {
+  border: 1px solid #333;
+  padding: 10px;
   text-align: left;
 }
 
-tr:hover {
-  background-color: #f0f0f0;
+th {
+  background-color: #ddd;
+  color: #333;
 }
 
-button {
-  margin-right: 4px;
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.selected {
+  background-color: #cce5ff !important;
 }
 </style>
